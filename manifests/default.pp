@@ -100,3 +100,8 @@ exec { "install casperjs":
   user => "root",
   require => Exec [ "add phantomjs binary", "download casperjs" ]
 }
+
+exec { "casper wordpress installation":
+  command => "/opt/casperjs/bin/casperjs test /vagrant/files/casper-wordpress-installation.js",
+  require => Exec [ "site wordpress", "install casperjs" ]
+}
