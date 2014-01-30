@@ -111,3 +111,8 @@ exec { "link theme":
   user => "root",
   require => Package [ "wordpress" ]
 }
+
+exec { "casper activate theme":
+  command => "/opt/casperjs/bin/casperjs test /vagrant/files/casper-activate-theme.js",
+  require => Exec [ "link theme", "casper wordpress installation" ]
+}
