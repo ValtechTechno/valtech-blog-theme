@@ -105,3 +105,9 @@ exec { "casper wordpress installation":
   command => "/opt/casperjs/bin/casperjs test /vagrant/files/casper-wordpress-installation.js",
   require => Exec [ "site wordpress", "install casperjs" ]
 }
+
+exec { "link theme":
+  command => "/bin/ln -s /vagrant/theme /usr/share/wordpress/wp-content/themes/valtech",
+  user => "root",
+  require => Package [ "wordpress" ]
+}
