@@ -25,4 +25,6 @@
  
   add_action('widgets_init', 'valtech_widgets_init');
 
+  add_theme_support('post-thumbnails');
+
 ?>
