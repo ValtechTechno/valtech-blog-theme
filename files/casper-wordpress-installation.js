@@ -1,10 +1,11 @@
 casper.test.begin('Automate install wordpress final install step', 2, function suite(test) {
-    casper.start('http://10.10.10.2', function() {
+    casper.start('http://<%= clientIP %>', function() {
         test.assertTitle('WordPress › Installation');
         this.fill('form#setup', {
             'weblog_title': 'Valtech Blog',
-            'admin_password': 'admin',
-            'admin_password2': 'admin',
+            'user_name': '<%= login %>',
+            'admin_password': '<%= password %>',
+            'admin_password2': '<%= password %>',
             'admin_email': 'postmaster@exemple.com',
             'blog_public': false
         }, true);

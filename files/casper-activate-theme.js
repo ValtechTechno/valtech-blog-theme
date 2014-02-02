@@ -1,13 +1,13 @@
 casper.test.begin('Automate activation of theme', 4, function suite(test) {
-    casper.start('http://10.10.10.2', function() {
+    casper.start('http://<%= clientIP %>', function() {
         test.assertTitle('Valtech Blog | Just another WordPress site');
         this.clickLabel('Log in');
     });
 
     casper.then(function() {
         this.fill('form#loginform', {
-            'log': 'admin',
-            'pwd': 'admin'
+            'log': '<%= login %>',
+            'pwd': '<%= password %>'
         }, true);
     });
 

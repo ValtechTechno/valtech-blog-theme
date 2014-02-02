@@ -101,9 +101,18 @@ exec { "install casperjs":
   require => Exec [ "add phantomjs binary", "download casperjs" ]
 }
 
-exec { "casper wordpress installation":
-  command => "/opt/casperjs/bin/casperjs test /vagrant/files/casper-wordpress-installation.js",
+$login = "admin"
+$password = "admin"
+
+file { "deploy casper wordpress installation":
+  path => "/tmp/casper-wordpress-installation.js",
+  content => template("/vagrant/files/casper-wordpress-installation.js"),
   require => Exec [ "site wordpress", "install casperjs" ]
+}
+
+exec { "casper wordpress installation":
+  command => "/opt/casperjs/bin/casperjs test /tmp/casper-wordpress-installation.js",
+  require => File [ "deploy casper wordpress installation" ]
 }
 
 exec { "link theme":
@@ -112,7 +121,13 @@ exec { "link theme":
   require => Package [ "wordpress" ]
 }
 
-exec { "casper activate theme":
-  command => "/opt/casperjs/bin/casperjs test /vagrant/files/casper-activate-theme.js",
+file { "deploy casper activate theme":
+  path => "/tmp/casper-activate-theme.js",
+  content => template("/vagrant/files/casper-activate-theme.js"),
   require => Exec [ "link theme", "casper wordpress installation" ]
+}
+
+exec { "casper activate theme":
+  command => "/opt/casperjs/bin/casperjs test /tmp/casper-activate-theme.js",
+  require => File [ "deploy casper activate theme" ]
 }
