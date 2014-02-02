@@ -8,12 +8,13 @@ How to test ?
 
  1. install vagrant
  1. run `vagrant up`
- 1. run `vagrant provision`
  1. go to [http://10.10.10.2](http://10.10.10.2)
 
 You should see the default wordpress page with the theme activated.
 
 Any changes in `/theme` will be visible in this url.
+
+To restart provisionning, use `vagrant provision`
 
 
 The theme
