@@ -7,6 +7,7 @@ How to test ?
 -------------
 
  1. install vagrant
+ 1. if you do not have the "base" box : `vagrant box add base http://files.vagrantup.com/precise32.box`
  1. run `vagrant up`
  1. go to [http://10.10.10.2](http://10.10.10.2)
 
