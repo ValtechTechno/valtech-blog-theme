@@ -1,0 +1,8 @@
+{
+  "name": "valtech-blog-theme",
+  "main": "theme/index.php",
+  "private": true,
+  "dependencies": {
+    "components-foundation": "~3.2.5"
+  }
+}

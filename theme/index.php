@@ -12,8 +12,8 @@
   <title><?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?></title>
   
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/stylesheets/foundation.min.css">
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/stylesheets/app.css">
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/stylesheets/app.css">
 
   <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -23,7 +23,7 @@ wp_head();
 
 ?>
 
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/javascripts/modernizr.foundation.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/javascripts/modernizr.foundation.js"></script>
 </head>
 <body <?php body_class(); ?>>
  
@@ -178,11 +178,11 @@ comments_template('', true);
   <!-- End Footer -->
   
   <!-- Included JS Files (Compressed) -->
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/javascripts/jquery.js"></script>
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/javascripts/foundation.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/javascripts/jquery.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/javascripts/foundation.min.js"></script>
   
   <!-- Initialize JS Plugins -->
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5-custom/javascripts/app.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation-3.2.5/javascripts/app.js"></script>
 <?php
 
   wp_footer();

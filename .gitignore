@@ -1,1 +1,3 @@
 .vagrant/
+bower_components/
+theme/foundation-3.2.5/

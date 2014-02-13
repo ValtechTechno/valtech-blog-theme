@@ -1,5 +1,22 @@
 exec { "apt-get update":
-  command => "/usr/bin/apt-get update"
+  command => "/usr/bin/apt-get update",
+  user => root
+}
+
+exec { "apt-get update after ppa":
+  command => "/usr/bin/apt-get update",
+  user => root
+}
+
+package { "python-software-properties":
+  ensure => installed,
+  require => Exec [ "apt-get update" ]
+}
+
+exec { "add nodejs ppa":
+  command => "/usr/bin/apt-add-repository ppa:chris-lea/node.js",
+  require => Package [ "python-software-properties" ],
+  notify => Exec [ "apt-get update after ppa" ]
 }
 
 package { "mysql-server":
@@ -121,10 +138,36 @@ exec { "link theme":
   require => Package [ "wordpress" ]
 }
 
+package { "nodejs":
+  ensure => "installed",
+  require => Exec [ "apt-get update after ppa" ]
+}
+
+exec { "install bower":
+  command => "/usr/bin/npm install -g bower",
+  user => "root",
+  require => Package [ "nodejs" ]
+}
+
+package { "git":
+  ensure => "installed",
+  require => Exec [ "apt-get update" ]
+}
+
+exec { "build theme":
+  cwd => "/vagrant/",
+  command => "/bin/sh /vagrant/build.sh",
+  logoutput => "on_failure",
+  require => [
+    Exec [ "link theme", "casper wordpress installation", "install bower" ],
+    Package [ "git" ]
+  ]
+}
+
 file { "deploy casper activate theme":
   path => "/tmp/casper-activate-theme.js",
   content => template("/vagrant/files/casper-activate-theme.js"),
-  require => Exec [ "link theme", "casper wordpress installation" ]
+  require => Exec [ "build theme" ]
 }
 
 exec { "casper activate theme":
