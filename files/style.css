@@ -10,6 +10,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: valtech, flexible-width, full-width-template
 */
 
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
+
 #blue-bar {
   border-bottom: 8px solid #00BDFA;
 }
@@ -20,6 +22,10 @@ Tags: valtech, flexible-width, full-width-template
 
 .post-avatar {
   margin-right: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 }
 
 /* Before knowning how to customize widgets template... */
