@@ -75,6 +75,11 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 ?>
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <div class="post-avatar left">
+          <a class="th radius" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+            <?php echo get_avatar( get_the_author_meta( 'ID' ), 60 ); ?>
+          </a>
+        </div>
         <h3>
           <a href="<?php the_permalink(); ?>" title="<?php printf('Permalien vers %s', the_title_attribute('echo=0')); ?>" rel="bookmark">
 <?php
@@ -88,7 +93,9 @@ if ( get_the_title() == '' ) {
 ?>
           </a>
         </h3>
-        <h6>Publié le <?php the_time('j/m'); ?>/<span><?php the_time( 'Y' ); ?></span>, par <?php the_author_link( ); ?> dans <?php the_category(', '); ?> | <?php comments_popup_link('Ajouter un commentaire', '1 Commentaire', '% Commentaires'); ?></h6>
+        <h6>
+          <div class="clearfix">Publié par <?php the_author_link( ); ?>, le <?php the_time('j/m'); ?>/<span><?php the_time( 'Y' ); ?></span>, dans <?php the_category(', '); ?></div>
+        </h6>
 
 <?php
 

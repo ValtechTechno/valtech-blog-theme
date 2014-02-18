@@ -15,7 +15,11 @@ Tags: valtech, flexible-width, full-width-template
 }
 
 #main-content {
-  margin-top: 12px;
+  margin-top: 21px;
+}
+
+.post-avatar {
+  margin-right: 12px;
 }
 
 /* Before knowning how to customize widgets template... */

@@ -124,7 +124,7 @@ exec { "install casperjs":
   ]
 }
 
-$version = "0.2"
+$version = "0.3"
 
 file { "/vagrant/theme/style.css":
   content => template("/vagrant/files/style.css"),
