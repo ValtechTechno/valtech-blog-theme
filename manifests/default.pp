@@ -34,7 +34,8 @@ $clientIP = "10.10.10.2"
 exec { "setup-mysql":
   command => "/bin/bash /usr/share/doc/wordpress/examples/setup-mysql -n wordpress $clientIP",
   user => "root",
-  require => Package [ "wordpress"]
+  refreshonly => true,
+  subscribe => Package [ "wordpress" ]
 }
 
 service { "apache2":
@@ -87,18 +88,20 @@ file { "/opt/phantomjs/":
 exec { "download phantomjs":
   command => "/usr/bin/wget -O /opt/phantomjs/phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.6-linux-i686.tar.bz2",
   user => "root",
-  require => File [ "/opt/phantomjs/" ]
+  require => File [ "/opt/phantomjs/" ],
+  creates => "/opt/phantomjs/phantomjs.tar.bz2"
 }
 
 exec { "install phantomjs":
   command => "/bin/tar -jxvf /opt/phantomjs/phantomjs.tar.bz2 -C /opt/phantomjs/ --strip-components 1",
   user => "root",
-  require => Exec [ "download phantomjs" ]
+  require => Exec [ "download phantomjs" ],
+  creates => "/opt/phantomjs/bin/phantomjs"
 }
 
-exec { "add phantomjs binary":
-  command => "/bin/ln -s /opt/phantomjs/bin/phantomjs /usr/bin/phantomjs",
-  user => "root",
+file { "/usr/bin/phantomjs":
+  ensure => link,
+  target => "/opt/phantomjs/bin/phantomjs",
   require => Exec [ "install phantomjs" ]
 }
 
@@ -115,7 +118,10 @@ exec { "download casperjs":
 exec { "install casperjs":
   command => "/bin/tar -zxvf /opt/casperjs/casperjs.tar.gz -C /opt/casperjs/ --strip-components 1",
   user => "root",
-  require => Exec [ "add phantomjs binary", "download casperjs" ]
+  require => [
+    Exec [ "download casperjs" ],
+    File [ "/usr/bin/phantomjs" ]
+  ]
 }
 
 $version = "0.2"
@@ -142,12 +148,13 @@ file { "deploy casper wordpress installation":
 
 exec { "casper wordpress installation":
   command => "/opt/casperjs/bin/casperjs test /tmp/casper-wordpress-installation.js",
+  logoutput => "on_failure",
   require => File [ "deploy casper wordpress installation" ]
 }
 
-exec { "link theme":
-  command => "/bin/ln -s /vagrant/theme /usr/share/wordpress/wp-content/themes/valtech",
-  user => "root",
+file { "/usr/share/wordpress/wp-content/themes/valtech":
+  ensure => link,
+  target => "/vagrant/theme",
   require => Package [ "wordpress" ]
 }
 
@@ -172,7 +179,8 @@ exec { "build theme":
   command => "/bin/sh /vagrant/build.sh",
   logoutput => "on_failure",
   require => [
-    Exec [ "link theme", "casper wordpress installation", "install bower" ],
+    File [ "/usr/share/wordpress/wp-content/themes/valtech" ],
+    Exec [ "casper wordpress installation", "install bower" ],
     Package [ "git" ]
   ]
 }
