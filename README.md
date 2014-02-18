@@ -3,7 +3,7 @@ valtech-blog-theme
 
 This is the repository of the [Valtech Wordpress](blog.valtech.fr) theme.
 
-How to test ?
+How to run it ?
 -------------
 
  1. install vagrant
@@ -21,17 +21,18 @@ To restart provisionning, use `vagrant provision`
 The theme
 ---------
 
-It includes foundation to be responsive out-of-the-box.
+It uses [foundation](http://foundation.zurb.com) in order to be responsive out-of-the-box.
 
 
 How it works ?
 --------------
 
-Vagrant will start an ubuntu virtual machine. Then, puppet will read its configuration and start installing required stuff (wordpress, mysql, etc.).
+Vagrant will start an ubuntu virtual machine. Then, puppet will read the configuration in `/manifests/default.pp` and start installing required stuff (wordpress, mysql, etc.).
 
-For final manual steps on Wordpress installation, casperjs is used to automate web clicking.
+For final manual steps on Wordpress installation, [casperjs](http://casperjs.org/) is used to automate web clicking.
 
-To package the theme zip :
+How to package the theme ?
+--------------------------
 
     cd /vagrant/target/
     ./package.sh
