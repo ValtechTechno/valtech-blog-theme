@@ -1,3 +1,9 @@
 .vagrant/
 bower_components/
-theme/foundation-3.2.5/
+target/
+theme/foundation/
+theme/modernizr/
+theme/jquery/
+theme/normalize-css
+theme/style.css
+

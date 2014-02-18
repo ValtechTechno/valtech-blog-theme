@@ -3,16 +3,12 @@ Theme Name: Valtech One
 Theme URI: http://blog.valtech.fr/
 Author: Eric Le Merdy, Valtech
 Author URI: http://valtech.com/
-Description: Reponsive design layout is a must-have in 2013.
-Version: 0.1
+Description: Reponsive design layout is a must-have in 2014.
+Version: <%= version %>
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: valtech, flexible-width, full-width-template
 */
-
-.top-bar {
-  background-color: #2A3333;
-}
 
 #blue-bar {
   border-bottom: 8px solid #00BDFA;

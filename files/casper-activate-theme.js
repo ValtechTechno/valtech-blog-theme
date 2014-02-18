@@ -22,7 +22,7 @@ casper.test.begin('Automate activation of theme', 4, function suite(test) {
     });
 
     casper.then(function () {
-        test.assertSelectorHasText('div#current-theme h4', 'Valtech One 0.1 by Eric Le Merdy, Valtech')
+        test.assertSelectorHasText('div#current-theme h4', 'Valtech One <%= version %> by Eric Le Merdy, Valtech')
     });
 
 	casper.run(function() {

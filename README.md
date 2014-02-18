@@ -30,3 +30,8 @@ How it works ?
 Vagrant will start an ubuntu virtual machine. Then, puppet will read its configuration and start installing required stuff (wordpress, mysql, etc.).
 
 For final manual steps on Wordpress installation, casperjs is used to automate web clicking.
+
+To package the theme zip :
+
+    cd /vagrant/target/
+    ./package.sh

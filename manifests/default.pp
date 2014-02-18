@@ -118,6 +118,19 @@ exec { "install casperjs":
   require => Exec [ "add phantomjs binary", "download casperjs" ]
 }
 
+$version = "0.2"
+
+file { "/vagrant/theme/style.css":
+  content => template("/vagrant/files/style.css"),
+  ensure => "present"
+}
+
+file { "/vagrant/target/package.sh":
+  content => template("/vagrant/files/package.sh"),
+  ensure => "present",
+  mode => "0766"
+}
+
 $login = "admin"
 $password = "admin"
 
@@ -172,5 +185,11 @@ file { "deploy casper activate theme":
 
 exec { "casper activate theme":
   command => "/opt/casperjs/bin/casperjs test /tmp/casper-activate-theme.js",
+  logoutput => "on_failure",
   require => File [ "deploy casper activate theme" ]
+}
+
+package { "unzip":
+  ensure => installed,
+  require => Exec [ "apt-get update" ]
 }
