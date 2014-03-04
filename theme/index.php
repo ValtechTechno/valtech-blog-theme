@@ -5,15 +5,9 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="fr"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-
-  <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title><?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?></title>
-  
-  <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation/foundation.min.css">
-
   <link rel="stylesheet" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php
@@ -21,7 +15,6 @@
 wp_head();
 
 ?>
-
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/modernizr/custom.modernizr.js"></script>
 </head>
 <body <?php body_class(); ?>>
@@ -184,11 +177,8 @@ comments_template('', true);
  
   <!-- End Footer -->
   
-  <!-- Included JS Files (Compressed) -->
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/jquery/jquery.min.js"></script>
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation/foundation.min.js"></script>
-  
-  <!-- Initialize JS Plugins -->
   <script>
     $(document).foundation();
   </script>
