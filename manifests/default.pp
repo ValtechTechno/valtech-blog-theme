@@ -1,23 +1,4 @@
-exec { "apt-get update":
-  command => "/usr/bin/apt-get update",
-  user => root
-}
-
-exec { "apt-get update after ppa":
-  command => "/usr/bin/apt-get update",
-  user => root
-}
-
-package { "python-software-properties":
-  ensure => installed,
-  require => Exec [ "apt-get update" ]
-}
-
-exec { "add nodejs ppa":
-  command => "/usr/bin/apt-add-repository ppa:chris-lea/node.js",
-  require => Package [ "python-software-properties" ],
-  notify => Exec [ "apt-get update after ppa" ]
-}
+import "nodejs.pp"
 
 package { "mysql-server":
   ensure => "installed",
@@ -158,15 +139,14 @@ file { "/usr/share/wordpress/wp-content/themes/valtech":
   require => Package [ "wordpress" ]
 }
 
-package { "nodejs":
-  ensure => "installed",
-  require => Exec [ "apt-get update after ppa" ]
-}
+include nodejs
 
 exec { "install bower":
   command => "/usr/bin/npm install -g bower",
   user => "root",
-  require => Package [ "nodejs" ]
+  logoutput => true,
+  require => Class [ "nodejs" ],
+  unless => "/usr/bin/file /usr/bin/bower"
 }
 
 package { "git":
