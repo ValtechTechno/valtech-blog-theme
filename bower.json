@@ -3,6 +3,6 @@
   "main": "theme/index.php",
   "private": true,
   "dependencies": {
-    "components-foundation": "~5.0.3"
+    "components-foundation": "~5.1.1"
   }
 }

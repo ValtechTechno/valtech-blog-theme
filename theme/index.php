@@ -7,7 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?></title>
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation/foundation.min.css">
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation/js/vendor/modernizr.js"></script>
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation/css/foundation.min.css">
+  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/foundation/css/normalize.css">
   <link rel="stylesheet" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php
@@ -15,7 +17,6 @@
 wp_head();
 
 ?>
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/modernizr/custom.modernizr.js"></script>
 </head>
 <body <?php body_class(); ?>>
  
@@ -126,7 +127,7 @@ comments_template('', true);
       <form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
         <div class="row collapse">
           <div class="small-8 columns">
-            <input type="search" placeholder="Rechercher" name="s" id="s">
+            <input type="text" placeholder="Rechercher" name="s" id="s">
           </div>
           <div class="small-4 columns">
             <input type="submit" class="expand postfix small secondary button" id="searchsubmit" value="Search">
@@ -177,8 +178,8 @@ comments_template('', true);
  
   <!-- End Footer -->
   
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/jquery/jquery.min.js"></script>
-  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation/foundation.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation/js/vendor/jquery.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/foundation/js/foundation.min.js"></script>
   <script>
     $(document).foundation();
   </script>
