@@ -34,5 +34,17 @@ For final manual steps on Wordpress installation, [casperjs](http://casperjs.org
 How to package the theme ?
 --------------------------
 
+Make sure `$version` is up to date in `manifests/default.pp`
+
+On `host`:
+
+    rm target/*
+    vagrant provision
+    vagrant ssh
+
+On `box`:
+
+    cd /vagrant/
+    ./build.sh
     cd /vagrant/target/
     ./package.sh
