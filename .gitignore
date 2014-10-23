@@ -1,9 +1,4 @@
-.vagrant/
 bower_components/
-target/
+target/*.zip
 theme/foundation/
-theme/modernizr/
-theme/jquery/
-theme/normalize-css
-theme/style.css
 

@@ -6,16 +6,18 @@ This is the repository of the [Valtech Wordpress](blog.valtech.fr) theme.
 How to run it ?
 -------------
 
- 1. install vagrant
- 1. if you do not have the "base" box : `vagrant box add base http://files.vagrantup.com/precise32.box`
- 1. run `vagrant up`
- 1. go to [http://10.10.10.2](http://10.10.10.2)
+ 1. install docker
+ 1. run `./start.sh`
+ 1. run `docker logs --follow wordpress-for-theme`
+ 1. Look for IP into line `apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.7 for ServerName`
+ 1. Navigate to this IP on your browser
+ 1. Follow final installation steps of wordpress
+ 1. Login with the admin account you created
+ 1. Activate the valtech theme
 
 You should see the default wordpress page with the theme activated.
 
 Any changes in `/theme` will be visible in this url.
-
-To restart provisionning, use `vagrant provision`
 
 
 The theme
@@ -27,24 +29,19 @@ It uses [foundation](http://foundation.zurb.com) in order to be responsive out-o
 How it works ?
 --------------
 
-Vagrant will start an ubuntu virtual machine. Then, puppet will read the configuration in `/manifests/default.pp` and start installing required stuff (wordpress, mysql, etc.).
+`start.sh` is starting a mysql container and a wordpress container. Previously, the wordpress container is built with a volume to link the theme.
 
-For final manual steps on Wordpress installation, [casperjs](http://casperjs.org/) is used to automate web clicking.
+`stop.sh` is stopping and removing the previously built wordpress and mysql containers.
+
 
 How to package the theme ?
 --------------------------
 
-Make sure `$version` is up to date in `manifests/default.pp`
+Don't forget to increment version in `/target/package.sh` and `/theme/style.css`
 
-On `host`:
+Run a docker container to use bower :
+`cd target`
+`docker run -it --rm -v $(pwd):/usr/src/ marmelab/bower "/bin/bash"`
 
-    rm target/*
-    vagrant provision
-    vagrant ssh
-
-On `box`:
-
-    cd /vagrant/
-    ./build.sh
-    cd /vagrant/target/
-    ./package.sh
+And on the box :
+`/build.sh`
