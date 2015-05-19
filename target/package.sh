@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=0.8
+VERSION=`awk '$1=="Version:"{print $2}' ../theme/style.css`
 
 echo "Package"
 rm -f *.zip

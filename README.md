@@ -37,7 +37,7 @@ How it works ?
 How to package the theme ?
 --------------------------
 
-Don't forget to increment version in `target/package.sh` and `theme/style.css`
+Don't forget to increment the version number in `theme/style.css`
 
 Run a docker container to use bower :
 ```
