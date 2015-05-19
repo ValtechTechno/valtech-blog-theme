@@ -4,7 +4,7 @@ valtech-blog-theme
 This is the repository of the [Valtech Wordpress](blog.valtech.fr) theme.
 
 How to run it ?
--------------
+---------------
 
  1. install docker
  1. run `./start.sh`
@@ -37,11 +37,28 @@ How it works ?
 How to package the theme ?
 --------------------------
 
-Don't forget to increment version in `/target/package.sh` and `/theme/style.css`
+Don't forget to increment version in `target/package.sh` and `theme/style.css`
 
 Run a docker container to use bower :
-`cd target`
-`docker run -it --rm -v $(pwd):/usr/src/ marmelab/bower "/bin/bash"`
+```
+cd target
+docker run -it --rm -v $(pwd):/data dockerfile/nodejs-bower-grunt
+```
 
-And on the box :
-`/build.sh`
+Run this command from the bower container :
+```
+./build.sh
+```
+
+Then, exit from the container :
+```
+exit
+```
+
+And create the package :
+```
+cd target
+./package.sh
+```
+
+You can now upload the new version of the theme and activate it on the blog in the admin section.
