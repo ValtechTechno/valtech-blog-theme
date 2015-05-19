@@ -130,7 +130,7 @@ comments_template('', true);
             <input type="text" placeholder="Rechercher" name="s" id="s">
           </div>
           <div class="small-4 columns">
-            <input type="submit" class="expand postfix small secondary button" id="searchsubmit" value="Search">
+            <input type="submit" class="expand postfix xx-small secondary button" id="searchsubmit" value="Search">
           </div>
         </div>
       </form>

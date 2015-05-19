@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=0.7
+VERSION=0.8
 
 echo "Package"
 rm -f *.zip
